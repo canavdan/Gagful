@@ -2,5 +2,8 @@ language: java
 
 jdk: openjdk8
 
-script:
-  - mvn package -DskipTests
+install:
+  - mvn install -DskipTests=true
+
+before_install:
+  - chmod +x mvnw
