@@ -2,13 +2,13 @@ package com.gagful.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gagful.base.BaseEntity;
-import com.gagful.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -24,6 +24,7 @@ public class CategoryDTO extends BaseEntity {
     @JsonIgnore
     private List<PostDTO> posts;
 
+    @NotEmpty
     @Lob
     private byte[] icon;
 }

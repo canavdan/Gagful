@@ -7,28 +7,32 @@ import com.gagful.constant.APIConstants;
 import com.gagful.dto.CategoryDTO;
 import com.gagful.entity.Category;
 import com.gagful.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import java.io.IOException;
 
+@RequiredArgsConstructor
 @RestController
-@RequestMapping(APIConstants.VERSION + "/category")
+@RequestMapping(APIConstants.VERSION)
 public class CategoryController extends BaseController<Category> {
 
-    @Autowired
-    private CategoryService categoryService;
 
-    @GetMapping("/")
-    public ResponseEntity<BaseResponse> findAll(){
-        return responseUtil.successListResponse(categoryService.findAll(),1,10);
+    private final CategoryService categoryService;
+
+    @GetMapping("/public/categories")
+    public ResponseEntity<BaseResponse> findAll() {
+        return responseUtil.successListResponse(categoryService.findAll(), 1, 10);
     }
 
-    @PostMapping(value= "/",produces = APIConstants.CHARSET)
-    public ResponseEntity<BaseResponse> save(HttpServletRequest request, @RequestBody BaseRequest<CategoryDTO> categoryDTO){
-        CategoryDTO categoryDTOSaved=categoryService.save(categoryDTO.getData());
+    @PreAuthorize("hasRole('Admin')")
+    @PostMapping(value = "/admin/secure/category", produces = APIConstants.CHARSET)
+    public ResponseEntity<BaseResponse> save(@RequestPart MultipartFile image, @RequestPart BaseRequest<CategoryDTO> categoryDTO) throws IOException {
+        categoryDTO.getData().setIcon(image.getBytes());
+        CategoryDTO categoryDTOSaved = categoryService.save(categoryDTO.getData());
         return responseUtil.successResponse(categoryDTOSaved);
     }
 

@@ -1,14 +1,11 @@
 package com.gagful.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gagful.base.BaseEntity;
 import com.gagful.constant.VoteType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,8 +15,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-public class VoteUser  extends BaseEntity implements Serializable {
+public class VoteUser extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

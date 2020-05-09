@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -15,6 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PostDTO extends BaseEntity {
 
     @NotBlank
@@ -24,21 +25,21 @@ public class PostDTO extends BaseEntity {
     @Lob
     private byte[] image;
 
-    @NotBlank(message = "Username is mandatory")
-    private String userUsername;
-
-    @NotBlank(message = "Category is mandatory")
     private String categoryName;
 
-    private boolean isSensitive=false;
+    private UserDTO user;
+
+    private CategoryDTO category;
+
+    private boolean isSensitive = false;
 
     @JsonIgnore
     private List<CommentDTO> comments;
 
-    @JsonIgnoreProperties({"id", "createdDate", "lastModifiedDate" })
+    @JsonIgnoreProperties({"id", "createdDate", "lastModifiedDate"})
     private List<VoteDTO> votes;
 
-    @JsonIgnoreProperties({"id", "createdDate", "lastModifiedDate" })
+    @JsonIgnoreProperties({"id", "createdDate", "lastModifiedDate"})
     private List<VoteUserDTO> voteUsers;
 
 }

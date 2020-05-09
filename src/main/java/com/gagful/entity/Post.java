@@ -1,8 +1,6 @@
 package com.gagful.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gagful.base.BaseEntity;
-import com.gagful.constant.VoteType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,7 +35,7 @@ public class Post extends BaseEntity implements Serializable {
     private Category category;
 
     @Column(name = "IS_SENSITIVE")
-    private boolean isSensitive=false;
+    private boolean isSensitive = false;
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
@@ -46,11 +44,10 @@ public class Post extends BaseEntity implements Serializable {
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private List<Vote> votes= new ArrayList<>();
+    private List<Vote> votes = new ArrayList<>();
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private List<VoteUser> voteUsers= new ArrayList<>();
-
+    private List<VoteUser> voteUsers = new ArrayList<>();
 
 }

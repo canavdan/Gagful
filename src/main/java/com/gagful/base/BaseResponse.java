@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BaseResponse <T extends Object> implements Serializable {
+public class BaseResponse<T extends Object> implements Serializable {
 
     private int status;
 
@@ -28,9 +27,9 @@ public class BaseResponse <T extends Object> implements Serializable {
 
     private boolean isSuccess;
 
-    private Integer pageNo=1;
+    private Integer pageNo = 1;
 
-    private Integer pageItems=10;
+    private Integer pageItems = 10;
 
     private Integer count;
 
@@ -41,18 +40,20 @@ public class BaseResponse <T extends Object> implements Serializable {
         this.status = apiStatus.getCode();
         this.message = apiStatus.getDescription();
         this.data = data;
-        this.isSuccess=isSuccess;
-        this.createdDate=new Date();
-        this.count=1;
+        this.isSuccess = isSuccess;
+        this.createdDate = new Date();
+        this.count = 1;
+        this.createdDate = new Date();
     }
 
-    public BaseResponse(APIStatus apiStatus, List<T> list, boolean isSuccess,int pageNo,int pageItems) {
+    public BaseResponse(APIStatus apiStatus, List<T> list, boolean isSuccess, int pageNo, int pageItems) {
         this.status = apiStatus.getCode();
         this.message = apiStatus.getDescription();
         this.list = list;
-        this.isSuccess=isSuccess;
-        this.pageItems=pageItems;
-        this.pageNo=pageNo;
-        this.count=list.size();
+        this.isSuccess = isSuccess;
+        this.pageItems = pageItems;
+        this.pageNo = pageNo;
+        this.count = list.size();
+        this.createdDate = new Date();
     }
 }
