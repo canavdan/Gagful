@@ -2,8 +2,8 @@ language: java
 
 jdk: openjdk8
 
-install:
-  - mvn install -DskipTests=true
+install: true
+script: mvn clean package -DskipTests=true -Dspring.profiles.active=local
 
 before_install:
   - chmod +x mvnw
