@@ -8,7 +8,7 @@ Gagful is a very simple and clean-design system implemented with Spring Boot.A s
 ![Maven](https://img.shields.io/badge/Maven-3.5.0-yellowgreen.svg)
 
 ## Analysis of the sample JHipster project
-[![Build Status](https://travis-ci.com/github/canavdan/Gagful.svg?branch=master)](https://travis-ci.com/github/canavdan/Gagful)
+[![Build Status](https://travis-ci.com/canavdan/Gagful.svg?branch=master)](https://travis-ci.com/canavdan/Gagful)
 
 
 Gagful is powered by many powerful frameworks and third-party projects:
