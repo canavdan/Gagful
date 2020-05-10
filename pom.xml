@@ -10,8 +10,8 @@
     </parent>
     <groupId>com</groupId>
     <artifactId>gagful</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>gagful</name>
+    <version>1.0</version>
+    <name>gagful-api</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -84,6 +84,23 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <repository>canavdan/${project.name}</repository>
+                    <tag>${project.version}</tag>
+                    <skipDockerInfo>true</skipDockerInfo>
+                </configuration>
             </plugin>
         </plugins>
     </build>

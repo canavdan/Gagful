@@ -11,9 +11,9 @@ services:
       - MYSQL_PASSWORD=admin
     restart: always
 
-  gagful:
-    container_name: gagful
-    image: gagful:1.0
+  gagful-api:
+    container_name: gagful-api
+    image: gagful-api:1.0
     links:
       - mysql-db
     environment:

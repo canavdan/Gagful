@@ -7,3 +7,8 @@ script: mvn clean package -DskipTests=true -Dspring.profiles.active=local
 
 before_install:
   - chmod +x mvnw
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+  - docker pull openjdk:8-jdk-alpine
+
+after_success:
+  - export IMAGE_NAME=canavdan/gagful-api
