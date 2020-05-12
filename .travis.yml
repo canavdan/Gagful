@@ -4,7 +4,8 @@ jdk: openjdk8
 
 install: true
 script: mvn clean package -DskipTests=true -Dspring.profiles.active=local
-
+services:
+  - docker
 before_install:
   - chmod +x mvnw
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
