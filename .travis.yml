@@ -13,3 +13,6 @@ before_install:
 
 after_success:
   - export IMAGE_NAME=canavdan/gagful-api
+  - export TAG=1.0
+  - docker tag $IMAGE_NAME:$TAG
+  - docker push $IMAGE_NAME:$TAG
