@@ -9,7 +9,8 @@ Gagful is a very simple and clean-design system implemented with Spring Boot.A s
 
 ## Analysis of the project
 [![Build Status](https://travis-ci.com/canavdan/Gagful.svg?branch=master)](https://travis-ci.com/canavdan/Gagful)
-[![docker build](https://img.shields.io/docker/cloud/build/canavdan/gagful-api)](https://cloud.docker.com/u/canavdan/repository/docker/canavdan/gagful-api)
+[![docker image version](https://img.shields.io/docker/v/canavdan/gagful-api)](https://cloud.docker.com/u/canavdan/repository/docker/canavdan/gagful-api)
+[![docker image version](https://img.shields.io/docker/v/canavdan/gagful-api)](https://cloud.docker.com/u/canavdan/repository/docker/canavdan/gagful-api)
 
 Gagful is powered by many powerful frameworks and third-party projects:
 
