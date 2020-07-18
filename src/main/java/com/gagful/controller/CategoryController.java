@@ -32,6 +32,7 @@ public class CategoryController extends BaseController<Category> {
     @PostMapping(value = "/admin/secure/category", produces = APIConstants.CHARSET)
     public ResponseEntity<BaseResponse> save(@RequestPart MultipartFile image, @RequestPart BaseRequest<CategoryDTO> categoryDTO) throws IOException {
         categoryDTO.getData().setIcon(image.getBytes());
+        //TODO compress
         CategoryDTO categoryDTOSaved = categoryService.save(categoryDTO.getData());
         return responseUtil.successResponse(categoryDTOSaved);
     }

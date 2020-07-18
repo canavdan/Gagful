@@ -33,7 +33,7 @@ public class BaseResponse<T extends Object> implements Serializable {
 
     private Integer count;
 
-    @JsonFormat(pattern = "dd-mm-yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy HH:mm:ss")
     private Date createdDate;
 
     public BaseResponse(APIStatus apiStatus, T data, boolean isSuccess) {
@@ -43,7 +43,6 @@ public class BaseResponse<T extends Object> implements Serializable {
         this.isSuccess = isSuccess;
         this.createdDate = new Date();
         this.count = 1;
-        this.createdDate = new Date();
     }
 
     public BaseResponse(APIStatus apiStatus, List<T> list, boolean isSuccess, int pageNo, int pageItems) {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Header } from '../Header';
 import { Footer } from '../Footer';
 import './style.css';
-import { Category } from '../Category';
+import Category  from '../Category';
 import { Search } from '../Search';
 
 export class ProfileHome extends Component {

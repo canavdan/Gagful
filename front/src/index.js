@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import store from './store/store';
 import Router from './router';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
+//import '../node_modules/bootstrap/dist/js/bootstrap.js';
 ReactDOM.render(
   // eslint-disable-next-line react/jsx-filename-extension
   <Provider store={store}>

@@ -27,10 +27,10 @@ public class BaseEntity {
     @Column(name = "ID")
     private String id = UUID.randomUUID().toString();
     @CreatedDate
-    @JsonFormat(pattern = "dd-mm-yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy HH:mm:ss",locale = "tr")
     @Column(name = "CREATED_DATE")
     private Date createdDate;
-    @JsonFormat(pattern = "dd-mm-yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy HH:mm:ss",locale = "tr")
     @LastModifiedDate
     @Column(name = "LAST_MODIFIED_DATE")
     private Date lastModifiedDate;

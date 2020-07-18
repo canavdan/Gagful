@@ -45,9 +45,9 @@ public class PostRequestDTO extends BaseEntity {
     @JsonIgnoreProperties({"id", "createdDate", "lastModifiedDate"})
     private List<VoteUserDTO> voteUsers;
 
-    public void setImage(byte[] image) {
+    /*public void setImage(byte[] image) {
         if (image != null && image.length > 0)
             this.image = FileUtil.compressBytes(image);
-    }
+    }*/
 
 }

@@ -19,7 +19,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "id"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PostResponseDTO extends BaseEntity {
 
     @NotBlank
@@ -47,10 +47,17 @@ public class PostResponseDTO extends BaseEntity {
     @JsonIgnoreProperties({"id", "createdDate", "lastModifiedDate"})
     private List<VoteUserDTO> voteUsers;
 
-    public byte[] getImage() {
+    /*public byte[] getImage() {
         if (image != null && image.length > 0)
             return FileUtil.decompressBytes(image);
         else
             return this.image;
     }
+
+    public byte[] getCategoryIcon() {
+        if (categoryIcon != null && categoryIcon.length > 0)
+            return FileUtil.decompressBytes(categoryIcon);
+        else
+            return this.categoryIcon;
+    }*/
 }

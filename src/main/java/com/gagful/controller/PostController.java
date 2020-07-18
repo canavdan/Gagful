@@ -5,10 +5,14 @@ import com.gagful.base.BaseRequest;
 import com.gagful.base.BaseResponse;
 import com.gagful.constant.APIConstants;
 import com.gagful.constant.VoteType;
+import com.gagful.dto.UserDTO;
 import com.gagful.dto.request.PostRequestDTO;
 import com.gagful.dto.response.PostResponseDTO;
 import com.gagful.entity.Post;
+import com.gagful.entity.User;
 import com.gagful.service.PostService;
+import com.gagful.service.UserService;
+import com.gagful.util.WebContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +33,8 @@ public class PostController extends BaseController<Post> {
 
 
     private final PostService postService;
+
+    private final UserService userService;
 
     @PreAuthorize("hasRole('Admin')")
     @GetMapping(value = "/admin/secure/posts", produces = APIConstants.CHARSET)
@@ -96,6 +102,22 @@ public class PostController extends BaseController<Post> {
     public ResponseEntity<BaseResponse> findByVotesAndUsername(@RequestParam(value = "username") String username) {
         List<PostResponseDTO> postDTOList = postService.findByVotesAndUsername(username);
         return responseUtil.successListResponse(postDTOList);
+    }
+
+    @GetMapping(value = "/admin/secure/post/down/{postId}")
+    public ResponseEntity<BaseResponse> downVote(HttpServletRequest request,@PathVariable String postId) {
+        UserDTO user=userService.findByUsername(WebContext.getUser(request));
+        //TODO 2 vote for user invalid
+        PostResponseDTO postDTO = postService.downVote(postId,user);
+        return responseUtil.successResponse(postDTO);
+    }
+
+    @GetMapping(value = "/admin/secure/post/up/{postId}")
+    public ResponseEntity<BaseResponse> upVote(HttpServletRequest request,@PathVariable String postId) {
+        UserDTO user=userService.findByUsername(WebContext.getUser(request));
+        //TODO 2 vote for user invalid
+        PostResponseDTO postDTO = postService.upVote(postId,user);
+        return responseUtil.successResponse(postDTO);
     }
 
 }

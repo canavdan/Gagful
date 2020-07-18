@@ -23,6 +23,8 @@
     ],
     "rules": {
         "linebreak-style":"off",
-        "no-named-as-default":"off"
+        "no-named-as-default":"off",
+        "semi":"off",
+        "prop-types":"off",
     }
 }

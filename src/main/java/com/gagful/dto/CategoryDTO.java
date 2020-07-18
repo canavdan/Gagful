@@ -2,6 +2,7 @@ package com.gagful.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gagful.base.BaseEntity;
+import com.gagful.util.FileUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,11 @@ public class CategoryDTO extends BaseEntity {
     @NotEmpty
     @Lob
     private byte[] icon;
+
+    /*public byte[] getIcon() {
+        if (icon != null && icon.length > 0)
+            return FileUtil.decompressBytes(icon);
+        else
+            return this.icon;
+    }*/
 }

@@ -13,7 +13,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.io.Serializable;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

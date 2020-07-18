@@ -9,6 +9,7 @@ import com.gagful.dto.request.JwtRequest;
 import com.gagful.entity.User;
 import com.gagful.service.UserService;
 import com.gagful.service.impl.AuthService;
+import com.gagful.util.WebContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,4 +44,14 @@ public class AuthController extends BaseController<User> {
         UserDTO user = authService.findUserByUsernameAndPassword(username, password);
         return responseUtil.successResponse(user);
     }
+
+    @PostMapping(value = "/admin/secure/logout", produces = APIConstants.CHARSET)
+    public ResponseEntity<BaseResponse> logOut(HttpServletRequest request, @RequestBody BaseRequest<UserDTO> userDTO) {
+        String user= WebContext.getUser(request);
+
+        redisService.delete("username");
+        redisService.delete("uId");
+        return responseUtil.successResponse(userDTO);
+    }
+
 }

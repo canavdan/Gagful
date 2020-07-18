@@ -38,7 +38,7 @@ public class FileUtil {
         Inflater inflater = new Inflater();
         inflater.setInput(data);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[65536];
         try {
             while (!inflater.finished()) {
                 int count = inflater.inflate(buffer);

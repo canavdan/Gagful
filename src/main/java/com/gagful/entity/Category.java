@@ -26,7 +26,7 @@ public class Category extends BaseEntity implements Serializable {
             cascade = CascadeType.ALL)
     private List<Post> posts = new ArrayList<>();
 
-    @Column(name = "IMAGE")
+    @Column(name = "ICON")
     @Lob
     private byte[] icon;
 

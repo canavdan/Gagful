@@ -1,69 +1,31 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { getNewPosts, getPopulerPosts, getTrendingPosts } from '../../actions/postActions'
+import  Post  from '../Post'
 
-export class PostCard extends Component {
-  constructor(props) {
-    super(props);
+const PostCard = ({ post, getNewPosts }) => {
+  const [test, setTest] = useState([])
+  useEffect(() => {
+    getNewPosts()
+  }, [])
 
-    this.state = {};
+ 
+  const renderPosts = () => {
+    
+    if (post.isLoading) return <p>Loading posts...</p>
+    if (post.errorMessage.length>5) return <p>Unable to display posts.</p>
+    return post.posts.map((post) => <Post key={post.id} post={post} />)
   }
 
-  render() {
-    return (
-      <>
-        <div className="card mb-4">
-          <img
-            className="card-img-top"
-            src="http://placehold.it/750x300"
-            alt="Card image cap"
-          />
-          <div className="card-body">
-            <h2 className="card-title">Post Title</h2>
-            <p className="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a
-              laboriosam. Dicta expedita corporis animi vero voluptate
-              voluptatibus possimus, veniam magni quis!
-            </p>
-            <a href="#" className="btn btn-primary">
-              Read More &rarr;
-            </a>
-          </div>
-          <div className="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
-          </div>
-        </div>
-        <div className="card mb-4">
-          <img
-            className="card-img-top"
-            src="http://placehold.it/750x300"
-            alt="Card image cap"
-          />
-          <div className="card-body">
-            <h2 className="card-title">Post Title</h2>
-            <p className="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a
-              laboriosam. Dicta expedita corporis animi vero voluptate
-              voluptatibus possimus, veniam magni quis!
-            </p>
-            <a href="#" className="btn btn-primary">
-              Read More &rarr;
-            </a>
-          </div>
-          <div className="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
-          </div>
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+    { renderPosts() }
+    </>
+  )
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({ post: state.post });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getNewPosts };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostCard);

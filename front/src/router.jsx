@@ -1,7 +1,6 @@
 /* eslint-disable import/no-named-as-default */
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { Switch } from 'react-router';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Header from './components/Header';
 import ProfileHome from './components/Profile/ProfileHome';

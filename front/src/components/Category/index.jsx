@@ -1,52 +1,57 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getCategories } from "../../actions/categoryActions";
+import {Image,Row,Col} from 'react-bootstrap'
+import "./style.css"
+const Category = ({ category, getCategories }) => {
+  useEffect(() => {
+    getCategories();
+  }, []);
 
-export class Category extends Component {
-  constructor(props) {
-    super(props);
+  const renderCategories = () => {
+    if (category.isLoading) return <p>Loading categories...</p>;
+    if (category.errorMessage.length > 5)
+      return <p>Unable to display categories.</p>;
+    return category.categories.map(category => (
+      <Row>
+        <Col>
+      <li>
+         <div className="listrap">
+                    
+        {category.icon ? (
+          <Image
+            src={`data:image/jpeg;base64,${category.icon}`}
+            width="60px"
+            height="60px"
+            roundedCircle
+          />
+        ) : (
+          <Image src="http://lorempixel.com/60/60/people/?v=1" roundedCircle />
+      
+        )}
+               
+                <strong>{category.name}</strong>
+                </div>
+      </li>
+      </Col>
+      </Row>
+    ));
+  };
 
-    this.state = {
-
-    };
-  }
-
-  render() {
-    return (
-      <div className="card my-4">
-        <h5 className="card-header">Categories</h5>
-        <div className="card-body">
-          <div className="row">
-            <div className="col-lg-6">
-              <ul className="list-unstyled mb-0">
-                <li>
-                  <a href="#">Web Design</a>
-                </li>
-                <li>
-                  <a href="#">HTML</a>
-                </li>
-                <li>
-                  <a href="#">Freebies</a>
-                </li>
-                <li>
-                  <a href="#">JavaScript</a>
-                </li>
-                <li>
-                  <a href="#">CSS</a>
-                </li>
-                <li>
-                  <a href="#">Tutorials</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+  return (
+    <div className="card">
+      <h5 className="card-header">Categories</h5>
+      <div className="card-body">
+        <div className="row">
+            <ul className="listrap">{renderCategories()}</ul>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = state => ({ category: state.category });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getCategories };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);
