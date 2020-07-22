@@ -1,31 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { getNewPosts, getPopulerPosts, getTrendingPosts } from '../../actions/postActions'
-import  Post  from '../Post'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  useParams,
+} from 'react-router-dom';
+import { getPosts } from '../../actions/postActions'
 
-const PostCard = ({ post, getNewPosts }) => {
-  const [test, setTest] = useState([])
+import Post from '../Post'
+
+const PostCard = () => {
+  const { postType } = useParams();
+  const dispatch = useDispatch()
+  const { post } = useSelector((state) => ({
+    post: state.post,
+  }))
+
   useEffect(() => {
-    getNewPosts()
-  }, [])
+    dispatch(getPosts(postType))
+  }, [postType])
 
- 
   const renderPosts = () => {
-    
     if (post.isLoading) return <p>Loading posts...</p>
-    if (post.errorMessage.length>5) return <p>Unable to display posts.</p>
+    if (post.errorMessage.length > 5) return <p>Unable to display posts.</p>
     return post.posts.map((post) => <Post key={post.id} post={post} />)
   }
 
   return (
     <>
-    { renderPosts() }
+      { renderPosts() }
     </>
   )
 }
-
-const mapStateToProps = (state) => ({ post: state.post });
-
-const mapDispatchToProps = { getNewPosts };
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostCard);
+export default PostCard

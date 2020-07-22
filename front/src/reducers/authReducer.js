@@ -6,7 +6,7 @@ import {
   LOG_OUT,
   SESSION_ERROR,
   SESSION_LOADING,
-} from '../actions/types';
+} from '../actions/types'
 
 const initialState = {
   loggedIn: false,
@@ -15,21 +15,21 @@ const initialState = {
   error: null,
   iscreatedUser: false,
   user: {},
-};
+}
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER_SUCCESS:
       return {
         ...state, loading: false, loggedIn: true, user: action.payload,
-      };
+      }
     case LOGIN_USER_FAILURE: {
       return {
         ...state,
         loading: false,
         loggedIn: false,
         error: action.payload,
-      };
+      }
     }
     case LOG_OUT:
       return { loggingOut: true, loading: false };
@@ -41,7 +41,7 @@ const authReducer = (state = initialState, action) => {
         error: action.payload,
         iscreatedUser: false,
         loading: false,
-      };
+      }
     case SESSION_LOADING:
       return { ...state, loading: true, error: null };
     case SESSION_ERROR:
@@ -49,5 +49,5 @@ const authReducer = (state = initialState, action) => {
     default:
       return state;
   }
-};
-export default authReducer;
+}
+export default authReducer

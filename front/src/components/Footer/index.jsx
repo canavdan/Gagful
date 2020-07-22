@@ -1,28 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
 
-export class Footer extends Component {
-  constructor(props) {
-    super(props);
+const Footer = () => (
+  <footer className="py-5 bg-dark">
+    <div className="container">
+      <p className="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+  </footer>
+)
 
-    this.state = {
-
-    };
-  }
-
-  render() {
-    return (
-      <footer className="py-5 bg-dark">
-        <div className="container">
-          <p className="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-        </div>
-      </footer>
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Footer);
+export default Footer

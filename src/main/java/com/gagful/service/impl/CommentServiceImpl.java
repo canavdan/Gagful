@@ -36,4 +36,9 @@ public class CommentServiceImpl implements CommentService {
         return mapper.mapList(comments, CommentDTO.class);
     }
 
+    @Override
+    public Long countByPost_Id(String postId) {
+        return commentRepository.countByPost_Id(postId);
+    }
+
 }

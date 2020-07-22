@@ -1,22 +1,10 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 
-export class EditProfile extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
-}
 
-const mapStateToProps = (state) => ({
-    
-})
+const EditProfile = () => (
 
-const mapDispatchToProps = {
-    
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)
+  <div>
+    EditProfile
+  </div>
+)
+export default EditProfile

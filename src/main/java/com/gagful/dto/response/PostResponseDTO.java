@@ -47,7 +47,13 @@ public class PostResponseDTO extends BaseEntity {
     @JsonIgnoreProperties({"id", "createdDate", "lastModifiedDate"})
     private List<VoteUserDTO> voteUsers;
 
-    /*public byte[] getImage() {
+    private int commentsCount;
+
+    public int getCommentsCount() {
+        return comments.size();
+    }
+
+/*public byte[] getImage() {
         if (image != null && image.length > 0)
             return FileUtil.decompressBytes(image);
         else

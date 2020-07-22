@@ -12,9 +12,6 @@
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
         "ecmaVersion": 11,
         "sourceType": "module"
     },
@@ -26,5 +23,6 @@
         "no-named-as-default":"off",
         "semi":"off",
         "prop-types":"off",
+        "no-shadow":"off"
     }
 }

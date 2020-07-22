@@ -23,4 +23,6 @@ public interface PostRepository extends JpaRepository<Post, String> {
     List<Post> findByComments_User_Username(String username);
 
     List<Post> findByVoteUsers_User_Username(String username);
+
+    List<Post> findByCategory_NameIgnoreCase(String categoryName);
 }

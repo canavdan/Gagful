@@ -16,6 +16,7 @@ import com.gagful.repository.PostRepository;
 import com.gagful.repository.UserRepository;
 import com.gagful.repository.VoteRepository;
 import com.gagful.repository.VoteUserRepository;
+import com.gagful.service.CategoryService;
 import com.gagful.service.PostService;
 import com.gagful.service.RedisService;
 import com.gagful.service.UserService;
@@ -41,6 +42,8 @@ public class PostServiceImpl implements PostService {
     private final UserRepository userRepository;
 
     private final VoteRepository voteRepository;
+
+    private final CategoryService categoryService;
 
     private final VoteUserRepository voteUserRepository;
 
@@ -121,6 +124,13 @@ public class PostServiceImpl implements PostService {
         userRepository.findByUsername(username).orElseThrow(
                 () -> new UserNotFoundException("User not found with username: " + username));
         List<Post> postList = postRepository.findByVoteUsers_User_Username(username);
+        return mapper.mapList(postList, PostResponseDTO.class);
+    }
+
+    @Override
+    public List<PostResponseDTO> findByCategory(String categoryName) {
+        log.info("Get posts by category.");
+        List<Post> postList = postRepository.findByCategory_NameIgnoreCase(categoryName);
         return mapper.mapList(postList, PostResponseDTO.class);
     }
 

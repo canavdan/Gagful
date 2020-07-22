@@ -30,4 +30,6 @@ public interface PostService {
     PostResponseDTO downVote(String postId,UserDTO user);
 
     PostResponseDTO upVote(String postId, UserDTO user);
+
+    List<PostResponseDTO> findByCategory(String categoryName);
 }

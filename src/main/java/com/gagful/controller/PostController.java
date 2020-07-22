@@ -104,6 +104,12 @@ public class PostController extends BaseController<Post> {
         return responseUtil.successListResponse(postDTOList);
     }
 
+    @GetMapping(value = "/public/posts/category/{categoryName}")
+    public ResponseEntity<BaseResponse> findByCategory(@PathVariable String categoryName) {
+        List<PostResponseDTO> postDTOList = postService.findByCategory(categoryName);
+        return responseUtil.successListResponse(postDTOList);
+    }
+
     @GetMapping(value = "/admin/secure/post/down/{postId}")
     public ResponseEntity<BaseResponse> downVote(HttpServletRequest request,@PathVariable String postId) {
         UserDTO user=userService.findByUsername(WebContext.getUser(request));
